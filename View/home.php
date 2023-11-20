@@ -38,7 +38,7 @@
                     <figcaption id="notificacao">Notificação</figcaption>
                 </figure>
             </div>
-            <button id="entrar">Entrar</button>
+            <a href="login.html"><button id="entrar">Logar</button></a>
         </nav>
         <hr>
         <div class="template-home">
