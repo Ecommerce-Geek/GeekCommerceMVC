@@ -1,0 +1,418 @@
+/* reset */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Fira Code', 'Roboto', 'Arial', sans-serif;
+
+
+}
+
+body {
+    background-color: #ffd903;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: #333;
+}
+
+p,
+label {
+    color: #444;
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid #000;
+    /* Cor da borda inferior com tom de azul ciano */
+    padding: 10px 0;
+    outline: none;
+    /* Remove a borda de foco padrão no clique */
+    transition: border-color 0.3s ease;
+    /* Adiciona uma transição suave na cor da borda */
+    font-size: 16px;
+    /* Tamanho da fonte */
+    background-color: #f0f0f0;
+    /* Cor de fundo */
+    color: #333;
+    /* Cor do texto */
+    border-radius: 4px;
+    /* Borda arredondada */
+}
+
+input::placeholder {
+    padding: 10px;
+    margin-left: 2px;
+}
+
+/* Estilo para a borda inferior quando o input está em foco */
+input:focus {
+    border-color: #ffd903;
+    /* Cor alterada ao receber foco */
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+    width: 400px;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+}
+
+
+/* pega header */
+
+
+
+.header {
+    height: 160px;
+    padding: 20px;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* .header h3{
+    color: #fff;
+    margin-top: 0;
+} */
+
+header img {
+    width: 100%;
+    margin: 0;
+    margin-top: 30px;
+    display: flex;
+
+
+}
+
+/* form container */
+
+.form-container {
+    background-color: #fdfdfd;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    top: -62px;
+}
+
+/* form header */
+
+.form-header {
+    border-bottom: 3px solid #dfdfdf;
+    height: 45px;
+}
+
+.form-header p {
+    /* color:2px  solid #673ab7; */
+    border-bottom: 2px solid #ffd903;
+    width: 100px;
+    text-align: center;
+    margin: 0 auto;
+    text-transform: uppercase;
+    height: 45px;
+    line-height: 45px;
+}
+
+/* form body */
+
+.form-body {
+    padding: 30px;
+    border: 2px solid #ccc;
+    /* Adicione a borda inicial */
+    transition: border-color 0.3s ease;
+    /* Adicione uma transição para a propriedade de cor da borda */
+
+}
+
+.form-body:hover {
+    border-color: #050505;
+    /* Cor da borda quando o mouse passa sobre o elemento */
+    border-radius: solid 1px #f0f8f017;
+
+}
+
+.form-title {
+    margin-bottom: 15px;
+}
+
+.form-body p {
+    margin-bottom: 20px;
+
+}
+
+.required-field {
+    color: #d80835;
+
+}
+
+.box-input {
+    margin-bottom: 35px;
+}
+
+.box-input-cep {
+    margin-bottom: 35px;
+}
+
+.block {
+    display: block;
+}
+
+
+.btn-submit {
+    background-color: #000;
+    color: #fff;
+    border: 2px solid transparent;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.5s;
+    display: inline-block;
+}
+
+.btn-submit:hover {
+    background-color: #ffd903;
+    border: #ffd903;
+    color: #000;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+#link-login {
+    font-size: 12px;
+}
+
+/* Responsividade */
+
+@media only screen and (max-width: 768px) {
+    .form-container {
+        width: 80%;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+    }
+
+    .btn-submit {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 400px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 562px) {
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 350px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 486px) {
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 300px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 434px) {
+    .form-title {
+        font-size: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 280px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 406px) {
+    .form-title {
+        font-size: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 260px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 376px),
+only screen and (max-width: 368px),
+only screen and (max-width: 352px),
+only screen and (max-width: 338px) {
+    .form-title {
+        font-size: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 255px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 368px) {
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 240px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 352px) {
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 230px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 338px) {
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 210px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 314px) {
+    .form-title {
+        font-size: 15px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 190px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 286px) {
+    .form-title {
+        font-size: 15px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"] {
+        width: 170px;
+    }
+
+    .form-body {
+        height: auto;
+    }
+}
+
+
+#aviso-cep {
+    padding: 10px;
+    background-color: #f8d7da;
+    /* Cor de fundo vermelha claro - você pode ajustar conforme necessário */
+    border: 1px solid #f5c6cb;
+    /* Cor da borda vermelha - você pode ajustar conforme necessário */
+    color: #721c24;
+    /* Cor do texto - você pode ajustar conforme necessário */
+    border-radius: 5px;
+    /* Bordas arredondadas para uma aparência mais suave */
+    margin-bottom: 15px;
+    /* Adiciona algum espaço na parte inferior para separar de outros elementos */
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Cadastrando um novo campeão</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="img/marvel-cadastro.jpg" alt="">
+        </div>
+        <div class="form-container">
+            <div class="form-header">
+                <p>Cadastro</p>
+            </div>
+            <div class="form-body">
+                <h1 class="form-title">Venha ser um Geek &#x261D;&#x1F913;</h1>
+                <form action="/Controller/action.php" method="POST">
+                    <div class="box-input">
+                        <label for="nome">
+                            Nome: <span class="required-field">*</span></label>
+                        <input type="text" name="nome" id="nome" class="block" placeholder="Digite o seu nome" required />
+                        <span id="aviso-nome"></span>
+                    </div>
+
+                    <div class="box-input">
+                        <label for="sobrenome">
+                            Sobrenome: <span class="required-field">*</span></label>
+
+                        <input type="text" name="sobrenome" id="sobrenome" class="block"
+                            placeholder="Digite seu sobrenome" required />
+                        <span id="aviso-sobrenome"></span>
+                    </div>
+
+                    <div class="box-input">
+                        <label for="cpf">
+                            CPF: <span class="required-field">*</span></label>
+
+                        <input type="text" name="cpf" id="cpf" class="block" placeholder="Digite seu CPF" required />
+                        <span class="aviso" id="aviso-cpf"></span>
+                    </div>
+
+                    <div class="box-input">
+                        <label for="email">
+                            Email: <span class="required-field">*</span></label>
+                        <input type="email" name="email" id="email" class="block" placeholder="Digite seu email"
+                            required />
+                        <span id="aviso-email"></span>
+                    </div>
+
+                    <div class="box-input">
+                        <label for="telefone">
+                            Telefone: <span class="required-field">*</span></label>
+
+                        <input type="number" name="telefone" id="telefone" class="block"
+                            placeholder="Digite seu número:  (DD) xxxx-xxxx" required />
+                        <span id="avsio-number"></span>
+                    </div>
+
+                    <div class="box-input-cep" >
+                        <label for="cep">
+                            CEP: <span class="required-field">*</span></label>
+                        <input type="text" name="cep" id="cep" class="block" placeholder="Digite seu CEP"
+                            pattern="\d{5}-?\d{3}" required />
+                        
+                    </div>
+
+                    <div class="box-input">
+                        <label for="senha">
+                            Senha: <span class="required-field">*</span></label>
+                        <input type="password" name="senha" id="senha" class="block" placeholder="Digite sua Senha "
+                            required />
+                        <span id="aviso-senha"></span>
+                    </div>
+
+                    <input type="submit" value="Enviar" class="btn-submit" id="enviar" />
+                    <button class="btn-submit"><a href="login.html">Já sou um Geek &#x1F60E; </a></button>
+                </form>
+                
+                <div id="resultado-json">
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
