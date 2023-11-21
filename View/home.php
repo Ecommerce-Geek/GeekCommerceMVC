@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,15 @@
 </head>
 
 <body>
+    <?php 
+        $existeId = false;
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $existeId = true;
+            include_once("../Controller/getAllData.php");
+            echo "<script>var nome = '".$data['nome']."', sobrenome = '".$data['sobrenome']."', cpf = '".$data['cpf']."', email = '".$data['email']."', telefone = '".$data['telefone']."', cep = '".$data['cep']."';</script>";
+        }
+    ?>
     <div class="container">
         <nav>
             <h5 id="logo">Point Geeek</h5>
@@ -38,7 +47,13 @@
                     <figcaption id="notificacao">Notificação</figcaption>
                 </figure>
             </div>
-            <a href="login.html"><button id="entrar">Logar</button></a>
+            <?php
+                if ($existeId) {
+                    echo "<label>".$data['nome']." ".$data["sobrenome"]."</label>";
+                } else {
+                    echo "<a href='login.html'><button id='entrar'>Logar</button></a>";
+                }
+            ?>
         </nav>
         <hr>
         <div class="template-home">
@@ -78,7 +93,6 @@
         </div>
 
     </div>
-
 </body>
 
 </html>
