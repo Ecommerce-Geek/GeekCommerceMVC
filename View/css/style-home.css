@@ -79,6 +79,13 @@ nav {
 
 }
 
+#nome-label {
+    font-size: 25px;
+    background-color: #000;
+    color: rgb(66, 66, 255);
+    border-radius: 5px;
+    padding: 5px;
+}
 
 form {
     display: flex;

@@ -47,8 +47,8 @@ class Conexao{
         }
         return $id;
     }
-    // usado em home.php
-    public function getAllDataById($id) {
+    // usado em getAllData.php
+    public function getAllClientesById($id) {
         $sql = "SELECT * FROM clientes WHERE id = $id";
         $result = $this->conexao->query($sql);
         $ret = [];
@@ -59,6 +59,24 @@ class Conexao{
             $ret['email'] = $row['email'];
             $ret['telefone'] = $row['telefone'];
             $ret['cep'] = $row['cep'];
+        }
+        return $ret;
+    }
+    public function getAllProdutos() {
+        $sql = "SELECT * FROM produtos";
+        $result = $this->conexao->query($sql);
+        $ret = [];
+        while ($row = $result->fetch_assoc()) {
+            $ret[$row['id']] = ['nome' => $row['nome'], 'custo_unitario' => $row['custo_unitario'], 'estoque' => $row['estoque'], 'categoria_id' => $row['categoria_id'], 'path_img' => $row['path_img']];
+        }
+        return $ret;
+    }
+    public function getAllCategorias() {
+        $sql = "SELECT * FROM categorias";
+        $result = $this->conexao->query($sql);
+        $ret = [];
+        while ($row = $result->fetch_assoc()) {
+            $ret[$row['id']] = $row['nome'];
         }
         return $ret;
     }

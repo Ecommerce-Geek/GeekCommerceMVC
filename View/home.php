@@ -1,55 +1,60 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geeek</title>
     <link rel="stylesheet" href="css/style-home.css">
+    <script src="js/script-home.js" defer></script>
 </head>
 
 <body>
-    <?php 
+    <script> var produtos, categorias;</script>
+    <?php
+        include_once("../Controller/getAllProdutos.php");
+        echo "<script>produtos = ".json_encode($produtos).", categorias = ".json_encode($categorias).";</script>";
         $existeId = false;
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $existeId = true;
-            include_once("../Controller/getAllData.php");
+            include_once("../Controller/getAllClientes.php");
             echo "<script>var nome = '".$data['nome']."', sobrenome = '".$data['sobrenome']."', cpf = '".$data['cpf']."', email = '".$data['email']."', telefone = '".$data['telefone']."', cep = '".$data['cep']."';</script>";
         }
     ?>
     <div class="container">
         <nav>
-            <h5 id="logo">Point Geeek</h5>
-            <form action="/search" method="get">
-                <input type="text" name="query" placeholder="O que procura?" id="form-pesquisar" required>
-                <button type="submit" id="botao-pesquisar">Pesquisar</button>
-            </form>
             <div class="campo-icone">
-                <figure>
-                    <img src="img/casa.png" alt="home">
-                    <figcaption>Home</figcaption>
-                </figure>
+                <div id="alinhamento-logo">
+                    <figure>
+                        <img id="p" src="img/simbulos-home/P.png" alt="home">
+                        <img id="oint" src="img/simbulos-home/OINT.png" alt="home">
+                        <img id="geek" src="img/simbulos-home/GEEK.png" alt="home">
+                        <img id="eclipse" src="img/simbulos-home/Ellipse 2.png" alt="">
+                    </figure>
+                </div>
             </div>
-            <div class="campo-icone">
-                <img src="img/carrinho-de-compras.png" alt="carrinho">
-                <figcaption>Carrinho</figcaption>
-            </div>
-            <div class="campo-icone">
-                <figure>
-                    <img src="img/comente.png" alt="chat">
-                    <figcaption id="chat">Chat</figcaption>
-                </figure>
-            </div>
-            <div class="campo-icone">
-                <figure>
-                    <img src="img/sino.png" alt="notificacao">
-                    <figcaption id="notificacao">Notificação</figcaption>
-                </figure>
+            <div>
+                <input type="text" name="query" placeholder="O que você procura?" id="form-pesquisar" required>
+                <button type="submit" id="botao-pesquisar" onclick="search()">Pesquisar</button>
             </div>
             <?php
                 if ($existeId) {
-                    echo "<label>".$data['nome']." ".$data["sobrenome"]."</label>";
+            ?>
+            <div class="campo-icone">
+                <img src="img/simbulos-navegacao/casa.png" alt="home">
+            </div>
+            <div class="campo-icone">
+                <img src="img/simbulos-navegacao/carrinho-de-compras.png" alt="carrinho">
+            </div>
+            <div class="campo-icone">
+                <img src="img/simbulos-navegacao/comente.png" alt="chat">
+            </div>
+            <div class="campo-icone">
+                <img src="img/simbulos-navegacao/sino.png" alt="notificacao">
+            </div>
+            <?php
+                echo "<label id='nome-label'>".$data['nome']." ".$data["sobrenome"]."</label>";
                 } else {
                     echo "<a href='login.html'><button id='entrar'>Logar</button></a>";
                 }
@@ -58,41 +63,156 @@
         <hr>
         <div class="template-home">
             <div class="campo-icone-localizacao">
-                <figure id="simbolo-alinhado">
-                    <img id="icone-localizacao" src="img/marcador.png" alt="localizacação">
-                    <select name="selecao-estados" id="selecao-estados">
-                        <option class="opcoes" value="opcoes"></option>
-                        <option class="opcoes" value="opcoes">Pará</option>
-                    </select>
-                </figure>
-                <div class="recursos-banner" id="decoracao">
+                <div class="recursos-banner" id="todos" onclick="chooseTodos()">
+                    <h5>Todos</h5>
+                </div>
+                <div class="recursos-banner" id="decoracao" onclick="typeChoose('decoracao')">
                     <h5>Decoração</h5>
                 </div>
-                <div class="recursos-banner" id="camiseta">
+                <div class="recursos-banner" id="camiseta" onclick="typeChoose('camiseta')">
                     <h5>Camiseta</h5>
                 </div>
-                <div class="recursos-banner" id="personalizados">
-                    <h5>Personalizados</h5>
+                <div class="recursos-banner" id="jogo" onclick="typeChoose('jogo')">
+                    <h5>Jogo</h5>
                 </div>
-                <div class="recursos-banner" id="promocoes">Promoções</div>
-                <div class="recursos-banner" id="diversos">
+                <div class="recursos-banner" id="diversos" onclick="typeChoose('diversos')">
                     <h5>Diversos</h5>
                 </div>
+            </div>
+            <img id="bannerzao" src="img/banner-miranha.jpg" alt="">
+
+            <div id="produtos-dinamicos">
+
+                <h2 id="titulo-importante">Edição Limitada: Produtos Incríveis</h2>
+                <div id="slide-imagem1">
+                    <a href="produtoexemplo.html">
+                        <img class="image" id="hollow" src="img/Hollow Knight.jpg" alt="Hollow Knight">
+                    </a>
+                </div>
+                <div id="slide-imagem2">
+                    <a href="produtoexemplo.html">
+                        <img class="image" id="sonic" src="img/sonic-bear-banner.jpg" alt="jogo Sonic Bear">
+                    </a>
+                </div>
+                <div id="slide-imagem3">
+                    <a href="produtoexemplo.html">
+                        <img class="image" id="supersmash" id="supersmash" src="img/supersmashbros-banner.jpg"
+                            alt="jogo Super Smash Bros">
+                    </a>
+                </div>
+                <div class="campo-icone">
+                    <img class="setinha" id="direita" src="img/simbulos-dinamicos/angulo-direito.png" alt="">
+                </div>
+                <div class="campo-icone">
+                    <img class="setinha" id="esquerda" src="img/simbulos-dinamicos/angulo-esquerdo.png" alt="">
+                </div>
+
+                <div class="campo-icone">
+                    <div id="campo-bolinhas">
+                        <div class="slide-bolinha1">
+                            <img class="bolinha" id="bolinha-preta" src="img/simbulos-dinamicos/circulo-preto.png">
+                        </div>
+                        <div class="slide-bolinha2">
+                            <img class="bolinha" id="bolinha-branca" src="img/simbulos-dinamicos/circulo-branco.png">
+                        </div>
+                        <div class="slide-bolinha3">
+                            <img class="bolinha" id="bolinha-branca" src="img/simbulos-dinamicos/circulo-branco.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-recursos">
+                    <h2 id="sub-title">Venha Conferir os Nossos Produtos!</h2>
+                    <a id="ver-todos" href="produtosGeral.html">Ver Todos</a>
+                </div>
+            </div>
+            <div class="parent-container">
+                <div id="produtos-id" class="parent-container"></div>
+                <footer>
+                    <div class="footer-content">
+                        <div class="footer-section about">
+                            <h2>Sobre Nós</h2>
+                            <p>Seu e-commerce oferece os melhores produtos para você.</p>
+                        </div>
+
+                        <div class="footer-section links">
+                            <h2>Links Rápidos</h2>
+                            <ul>
+                                <li><a href="#">Trabalhe Conosco</a></li>
+                                <li><a href="#">Produtos</a></li>
+                                <li><a href="#">Contato</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-section contact">
+                            <h2>Entre em Contato</h2>
+                            <p>Email: contato@pointgeek.com</p>
+                            <p>Telefone: (xx) xxxxx-xxxx</p>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        &copy; 2023 Seu PointGeek | Desenvolvido por Você
+                    </div>
+                </footer>
 
             </div>
-            <img id="bannerzao" src="img/bannerzao.webp" alt="">
-            <h5 id="sub-title">Chama aleatória para os itens</h5>
         </div>
-        
-        <div class="parent-container">
-            <div class="produto"></div>
-            <div class="produto"></div>
-            <div class="produto"></div>
-            <div class="produto"></div>
-            <div class="produto"></div>
-        </div>
+    <script>
+        function chooseTodos() {
+            let div = document.getElementById("produtos-id");
+            let h = "";
+            Object.keys(produtos).map(function (k){
+                h += "<div class='produto'>";
+                h += "<img src='"+produtos[k]['path_img']+"' alt='"+produtos[k]['nome']+"'>";
+                h += "<hr class='linha'>";
+                h += "<p class='legenda'>"+produtos[k]['nome']+"</p>";
+                h += "<p class='preco'>R$"+produtos[k]['custo_unitario'].split('.')[0]+"<span>"+(produtos[k]['custo_unitario'].split('.')[1] === undefined ? '00' : produtos[k]['custo_unitario'].split('.')[1])+"</span></p>";
+                h += "<button>Comprar</button></div>";
+            });
+            div.innerHTML = h;
+        }
+        if (produtos !== undefined) {chooseTodos()}
+        function typeChoose(tipo) {
+            let div = document.getElementById("produtos-id");
+            let h = "";
+            Object.keys(categorias).map(function (i){
+                if (categorias[i] === tipo) {
+                    Object.keys(produtos).map(function (k) {
+                        if (produtos[k]['categoria_id'] === i) {
+                            h += "<div class='produto'>";
+                            h += "<img src='"+produtos[k]['path_img']+"' alt='"+produtos[k]['nome']+"'>";
+                            h += "<hr class='linha'>";
+                            h += "<p class='legenda'>"+produtos[k]['nome']+"</p>";
+                            h += "<p class='preco'>R$"+produtos[k]['custo_unitario'].split('.')[0]+"<span>"+(produtos[k]['custo_unitario'].split('.')[1] === undefined ? '00' : produtos[k]['custo_unitario'].split('.')[1])+"</span></p>";
+                            h += "<button>Comprar</button></div>";
+                        }
+                    });
+                }
+            });
+            div.innerHTML = h;
+        }
+        function search() {
+            let s = document.getElementById('form-pesquisar').value;
+            if (s !== "") {
+                let div = document.getElementById('produtos-id');
+                let h = "";
+                Object.keys(produtos).map(function (k){
+                    if (produtos[k]['nome'].toLowerCase().indexOf(s.toLowerCase()) !== -1) {
+                        h += "<div class='produto'>";
+                        h += "<img src='"+produtos[k]['path_img']+"' alt='"+produtos[k]['nome']+"'>";
+                        h += "<hr class='linha'>";
+                        h += "<p class='legenda'>"+produtos[k]['nome']+"</p>";
+                        h += "<p class='preco'>R$"+produtos[k]['custo_unitario'].split('.')[0]+"<span>"+(produtos[k]['custo_unitario'].split('.')[1] === undefined ? '00' : produtos[k]['custo_unitario'].split('.')[1])+"</span></p>";
+                        h += "<button>Comprar</button></div>";
+                    }
+                });
+                document.getElementById('form-pesquisar').value = "";
+                div.innerHTML = h !== "" ? h : "<h2>A pesquisa '"+s+"' não foi encontrado!</h2>";
+            }
+        }
+    </script>
 
-    </div>
 </body>
 
 </html>
