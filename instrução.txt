@@ -1,4 +1,4 @@
-Código SQL
+-- Código SQL
 -- Cria o banco de dados "geek_commerce" com collation e character definidos como utf8mb4
 CREATE DATABASE IF NOT EXISTS geek_commerce
 DEFAULT CHARACTER SET utf8mb4
@@ -30,10 +30,18 @@ CREATE TABLE IF NOT EXISTS carrinho (
     FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
+-- Tabela de categorias dos produtos
+CREATE TABLE IF NOT EXISTS categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL
+);
+
 -- Tabela de produtos a venda
 CREATE TABLE IF NOT EXISTS produtos (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     custo_unitario FLOAT NOT NULL,
-    estoque INT NOT NULL
+    estoque INT NOT NULL,
+    categoria_id INT,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id),
 );

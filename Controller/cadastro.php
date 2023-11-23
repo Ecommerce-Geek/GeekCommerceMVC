@@ -1,8 +1,8 @@
 <?php
-    // Verifica se o formulário foi enviado
     include_once("../Module/conexao.php");
     $c = new Conexao();
-
+    
+    // Verifica se o formulário foi enviado
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Recupera os dados do formulário
         $nome = $_POST["nome"];
@@ -21,15 +21,12 @@
 
         $id = $c->setAllDataAndReturnId($nome, $sobrenome, $cpf, $email, $telefone, $cep, $senha);
 
-        echo "Nome: $nome<br>";
-        echo "Sobrenome: $sobrenome<br>";
-        echo "CPF: $cpf<br>";
-        echo "Email: $email<br>";
-        echo "Telefone: $telefone<br>";
-        echo "CEP: $cep<br>";
-        echo "ID: $id";
-
+        if ($id == 0) {
+            header("Location: ../View/erro.php?e=2");
+        } else {
+            header("Location: ../View/home.php?id=$id");
+        }
+        
     } else {
-        header("Location: erro.html");
         exit;
     }
