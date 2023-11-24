@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS produtos (
     custo_unitario FLOAT NOT NULL,
     estoque INT NOT NULL,
     categoria_id INT,
-    FOREIGN KEY (categoria_id) REFERENCES categorias(id),
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
 
 -- inserir categorias de produtos
