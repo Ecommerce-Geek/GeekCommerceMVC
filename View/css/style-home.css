@@ -47,27 +47,6 @@ p {
     line-height: 1.5;
 }
 
-/* .options {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.options button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #4caf50;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.options button:hover {
-    background-color: #3e8e41;
-} */
-
 nav {
     display: flex;
     justify-content: space-between;
@@ -218,6 +197,13 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #333;
+}
+
+
+.recursos-banner:hover {
+    background-color: #ccc;
+    cursor: pointer;
 }
 
 .campo-icone-localizacao .recursos-banner {
@@ -466,13 +452,13 @@ form {
 }
 
 .produto button {
-    background-color: #3498db; /* Cor de fundo azul */
-    color: #fff; /* Cor do texto branco */
-    padding: 10px 20px; 
-    border: none; /* Remove a borda */
-    border-radius: 5px; /* Borda arredondada */
-    cursor: pointer; /* Altera o cursor ao passar sobre o botão */
-    transition: background-color 0.3s; /* Adiciona uma transição suave na mudança de cor de fundo */
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
     position: absolute;
     bottom: 4px;
     left: 50%;
@@ -480,13 +466,8 @@ form {
 }
 
 .produto button:hover {
-    background-color: #2980b9; /* Cor de fundo azul mais escura ao passar o mouse */
+    background-color: #2980b9;
 }
-
-
-
-
-
 
 
 /* Rodapé */
@@ -541,6 +522,11 @@ footer {
     text-align: center;
     padding: 10px 0;
     background-color: #222;
-    /* Cor de fundo mais escura para a parte inferior */
     color: #fff;
+}
+
+#numero-compras {
+    position: relative;
+    left: 29px;
+    top: -21px;
 }

@@ -1,7 +1,5 @@
 // logica das telas dinamicas
 
-
-
 const btnSetinhaDireita = document.querySelector("#direita")
 const btnSetinhaEsquerda = document.querySelector("#esquerda")
 
@@ -83,3 +81,41 @@ btnSetinhaEsquerda.addEventListener("click", (event) => {
     moveLeft();
 });
 
+
+//Area da Navegação
+
+document.getElementById("finalizacao-compras").style.display = "none";
+
+document.getElementById("carrinho").addEventListener("click", (event) => {
+    document.getElementById("home").style.display = "none";
+    document.getElementById("finalizacao-compras").style.display = "block";
+    document.getElementById("configuracoes").style.display = "none"
+    event.preventDefault();
+});
+
+document.getElementById("icon-home").addEventListener("click", (event) => {
+    document.getElementById("home").style.display = "block";
+    document.getElementById("finalizacao-compras").style.display = "none";
+    document.getElementById("configuracoes").style.display = "none"
+    event.preventDefault();
+});
+
+//Area da configuração
+const enviarBtn = document.querySelector("#enviar");
+document.getElementById("icon-config").addEventListener("click",(event)=>{
+    document.getElementById("home").style.display = "none"
+    document.getElementById("finalizacao-compras").style.display = "none"
+    document.getElementById("configuracoes").style.display = "block"
+    event.preventDefault()
+})
+
+
+
+
+
+
+
+
+
+
+// 

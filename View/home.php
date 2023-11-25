@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geeek</title>
     <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-config.css">
     <script src="js/script-home.js" defer></script>
 </head>
 
@@ -41,17 +42,17 @@
             <?php
                 if ($existeId) {
             ?>
-            <div class="campo-icone">
+            <div class="campo-icone" id="icon-home">
                 <img src="img/simbulos-navegacao/casa.png" alt="home">
             </div>
             <div class="campo-icone">
-                <img src="img/simbulos-navegacao/carrinho-de-compras.png" alt="carrinho">
+                <div id="carrinho">
+                    <span id="numero-compras">0</span>
+                    <img src="img/simbulos-navegacao/carrinho-de-compras.png" alt="carrinho">
+                </div>
             </div>
-            <div class="campo-icone">
-                <img src="img/simbulos-navegacao/comente.png" alt="chat">
-            </div>
-            <div class="campo-icone">
-                <img src="img/simbulos-navegacao/sino.png" alt="notificacao">
+            <div class="campo-icone" id="icon-config">
+                <img src="img/simbulos-navegacao/definicoes.png" alt="configuracao">
             </div>
             <?php
                 echo "<label id='nome-label'>".$data['nome']." ".$data["sobrenome"]."</label>";
@@ -61,7 +62,7 @@
             ?>
         </nav>
         <hr>
-        <div class="template-home">
+        <div class="template-home" id="home">
             <div class="campo-icone-localizacao">
                 <div class="recursos-banner" id="todos" onclick="chooseTodos()">
                     <h5>Todos</h5>
@@ -155,8 +156,25 @@
                         &copy; 2023 Seu PointGeek | Desenvolvido por Você
                     </div>
                 </footer>
-
             </div>
+        </div>
+        <div id="finalizacao-compras">
+            <h3>Mostra do carrinho</h3>
+
+        </div>
+        <div id="configuracoes">
+            <h3>Configurações</h3>
+                <form id="form-cadastro-config" action="../Controller/cadastro.php" method="POST">
+                    <div class="box-input-config" id="conteiner-cep" >
+                        <label for="cep">Alterar CEP: </label>
+                        <input type="text" name="cep" id="cep-config" class="entrada" placeholder="Alterar CEP:"/>
+                    </div>
+                    <div class="box-input-config" id="conteiner-telefone" >
+                        <label for="telefone">Alterar Telefone:</label>
+                        <input type="number" name="telefone" id="telefone-config" class="entrada" placeholder="Alterar Telefone:"/>
+                    </div>
+                    <input type="submit" value="Modificar" class="btn-submit-config" id="enviar" />
+            </form>
         </div>
     <script>
         function chooseTodos() {

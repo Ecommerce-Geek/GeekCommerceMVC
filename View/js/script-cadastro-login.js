@@ -9,8 +9,7 @@ const senhaInput = document.querySelector("#senha");
 
 
 enviarBtn.addEventListener("click", async (event) => {
-    // event.preventDefault();
-
+    event.preventDefault()
     const cpfValidado = cpfInput.value.replace(/\D/g, '');
     const cepValidado = cepInput.value.replace(/\D/g, '');
 
@@ -18,9 +17,8 @@ enviarBtn.addEventListener("click", async (event) => {
     if (!validCPF(cpfValidado)) {
         alert("CPF inválido");
         return;
-    }
-
-
+    } 
+    
     if (!validCEP(cepValidado)) {
         alert("CEP invalido")
         return;
@@ -30,25 +28,12 @@ enviarBtn.addEventListener("click", async (event) => {
 
     // Se o CEP não for válido, interrompe a execução
     if (!enderecoResponse || enderecoResponse.erro) {
-        mensagemNaoEncontrado();
         alert("CEP inexistente")
-        event.preventDefault();
+        mensagemNaoEncontrado();
         return;
     }
 
-    const formularioData = {
-        cpf: cpfValidado,
-        nome: nomeInput.value,
-        sobrenome: sobrenomeInput.value,
-        email: emailInput.value,
-        telefone: telefoneInput.value,
-        cep: enderecoResponse,
-        senha: senhaInput.value
-    };
-
-    const formularioJSON = JSON.stringify(formularioData);
-
-    console.log(formularioJSON);
+    return document.querySelector("#form-cadastro").submit();
 
 });
 
@@ -100,8 +85,6 @@ function mensagemNaoEncontrado() {
     boxInputCep.appendChild(avisoCEP)
 
 }
-
-
 
 function validCEP(cep) {
     return /^\d{8}$/.test(cep);
