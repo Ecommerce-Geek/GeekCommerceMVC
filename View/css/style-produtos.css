@@ -1,28 +1,164 @@
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(-45deg, #007, #00f, #007, #00f);
-    background-size: 400% 400%;
-    animation: gradientAnimation 10s infinite;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
 
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.container {
+.template-home {
     width: 80%;
-    margin: 0 auto;
-    background-color: #ffd903;
+    margin: auto;
+}
+
+
+.cabecalhodo-produto {
+    background-color: #333;
+    width: 230px;
+    height: 200;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin: auto;
+    display: block;
+    border: 2px solid #fff;
+}
+
+main {
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#venom {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.titulo-produto {
+    font-size: 24px;
+    color: #333;
+}
+
+
+.preco-produto {
+    font-size: 24px;
+    color: #ff6600;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.preco-produto:hover {
+    color: #e25700;
+    text-shadow: 2px 2px 4px #fff(0, 0, 0, 0.5);
+}
+
+
+
+.descricao {
+    font-size: 16px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.comprar {
+    background-color: #ff6600;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.comprar:hover {
+    background-color: #e25700;
+}
+
+
+.rodape-produto {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+.entrada-quantidade {
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+}
+
+.template-fundo {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* .campo-icone {
+    display: flex;
+    align-items: center; 
+    margin-left: 290px;
+} */
+
+.logo-mais,
+.logo-menos {
+    margin: 0 10px;
+
+}
+
+.entrada-quantidade {
+    height: 30px;
+    width: 60px;
+    text-align: center;
+}
+
+
+.campo-quantidade{
+    margin-top: 16px;
+    margin-left: 300px;
+}
+
+.campo-icone-produtos {
+    display: flex;
+    align-items: center;
+    
+
+}
+
+.campo-icone-produtos img {
+    font-size: 24px;
+    color: #007bff;
+    margin-right: 5px;
+    width: 30px;
+}
+
+
+.logo-menos img {
+    width: 34px; 
+    height: auto;
+}
+
+
+.logo-mais,
+.logo-menos {
+    margin: 0 10px;
+}
+
+.entrada-quantidade {
+    width: 40px;
+    text-align: center;
+}
+
+.painel-quantidade {
+    background-color: #fff; /* Cor de fundo do painel */
+
+    color: #000; /* Cor do texto */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 5px; /* Cantos arredondados */
+    display: inline-block; /* Torna o painel um bloco inline */
 }

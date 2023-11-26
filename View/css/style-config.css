@@ -25,6 +25,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
 }
 
 h3 {
@@ -80,3 +81,4 @@ label {
     border-color: #3498db;
     box-shadow: 0 2px 6px rgba(52, 152, 219, 0.5);
 }
+

@@ -7,21 +7,23 @@
     <title>Geeek</title>
     <link rel="stylesheet" href="css/style-home.css">
     <link rel="stylesheet" href="css/style-config.css">
-    <script src="js/script-home.js" defer></script>
+    <script defer src="js/script-home.js"></script>
 </head>
 
 <body>
-    <script> var produtos, categorias;</script>
+    <script>
+        var produtos, categorias;
+    </script>
     <?php
-        include_once("../Controller/getAllProdutos.php");
-        echo "<script>produtos = ".json_encode($produtos).", categorias = ".json_encode($categorias).";</script>";
-        $existeId = false;
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $existeId = true;
-            include_once("../Controller/getAllClientes.php");
-            echo "<script>var nome = '".$data['nome']."', sobrenome = '".$data['sobrenome']."', cpf = '".$data['cpf']."', email = '".$data['email']."', telefone = '".$data['telefone']."', cep = '".$data['cep']."';</script>";
-        }
+    include_once("../Controller/getAllProdutos.php");
+    echo "<script>produtos = " . json_encode($produtos) . ", categorias = " . json_encode($categorias) . ";</script>";
+    $existeId = false;
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $existeId = true;
+        include_once("../Controller/getAllClientes.php");
+        echo "<script>var nome = '" . $data['nome'] . "', sobrenome = '" . $data['sobrenome'] . "', cpf = '" . $data['cpf'] . "', email = '" . $data['email'] . "', telefone = '" . $data['telefone'] . "', cep = '" . $data['cep'] . "';</script>";
+    }
     ?>
     <div class="container">
         <nav>
@@ -35,30 +37,33 @@
                     </figure>
                 </div>
             </div>
-            <div>
+            <div id="campo-pesquisa">
                 <input type="text" name="query" placeholder="O que você procura?" id="form-pesquisar" required>
                 <button type="submit" id="botao-pesquisar" onclick="search()">Pesquisar</button>
-            </div>
-            <?php
-                if ($existeId) {
-            ?>
-            <div class="campo-icone" id="icon-home">
-                <img src="img/simbulos-navegacao/casa.png" alt="home">
-            </div>
-            <div class="campo-icone">
-                <div id="carrinho">
-                    <span id="numero-compras">0</span>
-                    <img src="img/simbulos-navegacao/carrinho-de-compras.png" alt="carrinho">
+                <div id="resultadosDiv">
+                    
                 </div>
             </div>
-            <div class="campo-icone" id="icon-config">
-                <img src="img/simbulos-navegacao/definicoes.png" alt="configuracao">
-            </div>
             <?php
-                echo "<label id='nome-label'>".$data['nome']." ".$data["sobrenome"]."</label>";
-                } else {
-                    echo "<a href='login.html'><button id='entrar'>Logar</button></a>";
-                }
+            if ($existeId) {
+            ?>
+                <div class="campo-icone" id="icon-home">
+                    <img src="img/simbulos-navegacao/casa.png" alt="home">
+                </div>
+                <div class="campo-icone">
+                    <div id="carrinho">
+                        <span id="numero-compras">0</span>
+                        <img src="img/simbulos-navegacao/carrinho-de-compras.png" alt="carrinho">
+                    </div>
+                </div>
+                <div class="campo-icone" id="icon-config">
+                    <img src="img/simbulos-navegacao/definicoes.png" alt="configuracao">
+                </div>
+            <?php
+                echo "<label id='nome-label'>" . $data['nome'] . " " . $data["sobrenome"] . "</label>";
+            } else {
+                echo "<a href='login.html'><button id='entrar'>Logar</button></a>";
+            }
             ?>
         </nav>
         <hr>
@@ -97,8 +102,7 @@
                 </div>
                 <div id="slide-imagem3">
                     <a href="produtoexemplo.html">
-                        <img class="image" id="supersmash" id="supersmash" src="img/supersmashbros-banner.jpg"
-                            alt="jogo Super Smash Bros">
+                        <img class="image" id="supersmash" id="supersmash" src="img/supersmashbros-banner.jpg" alt="jogo Super Smash Bros">
                     </a>
                 </div>
                 <div class="campo-icone">
@@ -164,72 +168,76 @@
         </div>
         <div id="configuracoes">
             <h3>Configurações</h3>
-                <form id="form-cadastro-config" action="../Controller/cadastro.php" method="POST">
-                    <div class="box-input-config" id="conteiner-cep" >
-                        <label for="cep">Alterar CEP: </label>
-                        <input type="text" name="cep" id="cep-config" class="entrada" placeholder="Alterar CEP:"/>
-                    </div>
-                    <div class="box-input-config" id="conteiner-telefone" >
-                        <label for="telefone">Alterar Telefone:</label>
-                        <input type="number" name="telefone" id="telefone-config" class="entrada" placeholder="Alterar Telefone:"/>
-                    </div>
-                    <input type="submit" value="Modificar" class="btn-submit-config" id="enviar" />
+            <form id="form-cadastro-config" action="../Controller/cadastro.php" method="POST">
+                <div class="box-input-config" id="conteiner-cep">
+                    <label for="cep">Alterar CEP: </label>
+                    <input type="text" name="cep" id="cep-config" class="entrada" placeholder="Alterar CEP:" />
+                </div>
+                <div class="box-input-config" id="conteiner-telefone">
+                    <label for="telefone">Alterar Telefone:</label>
+                    <input type="number" name="telefone" id="telefone-config" class="entrada" placeholder="Alterar Telefone:" />
+                </div>
+                <input type="submit" value="Modificar" class="btn-submit-config" id="enviar" />
             </form>
         </div>
-    <script>
-        function chooseTodos() {
-            let div = document.getElementById("produtos-id");
-            let h = "";
-            Object.keys(produtos).map(function (k){
-                h += "<div class='produto'>";
-                h += "<img src='"+produtos[k]['path_img']+"' alt='"+produtos[k]['nome']+"'>";
-                h += "<hr class='linha'>";
-                h += "<p class='legenda'>"+produtos[k]['nome']+"</p>";
-                h += "<p class='preco'>R$"+produtos[k]['custo_unitario'].split('.')[0]+"<span>"+(produtos[k]['custo_unitario'].split('.')[1] === undefined ? '00' : produtos[k]['custo_unitario'].split('.')[1])+"</span></p>";
-                h += "<button>Comprar</button></div>";
-            });
-            div.innerHTML = h;
-        }
-        if (produtos !== undefined) {chooseTodos()}
-        function typeChoose(tipo) {
-            let div = document.getElementById("produtos-id");
-            let h = "";
-            Object.keys(categorias).map(function (i){
-                if (categorias[i] === tipo) {
-                    Object.keys(produtos).map(function (k) {
-                        if (produtos[k]['categoria_id'] === i) {
+        <script>
+            function chooseTodos() {
+                let div = document.getElementById("produtos-id");
+                let h = "";
+                Object.keys(produtos).map(function(k) {
+                    h += "<div class='produto'>";
+                    h += "<img src='" + produtos[k]['path_img'] + "' alt='" + produtos[k]['nome'] + "'>";
+                    h += "<hr class='linha'>";
+                    h += "<p class='legenda'>" + produtos[k]['nome'] + "</p>";
+                    h += "<p class='preco'>R$" + produtos[k]['custo_unitario'].split('.')[0] + "<span>" + (produtos[k]['custo_unitario'].split('.')[1] === undefined ? '00' : produtos[k]['custo_unitario'].split('.')[1]) + "</span></p>";
+                    h += "<button>Comprar</button></div>";
+                });
+                div.innerHTML = h;
+            }
+            if (produtos !== undefined) {
+                chooseTodos()
+            }
+
+            function typeChoose(tipo) {
+                let div = document.getElementById("produtos-id");
+                let h = "";
+                Object.keys(categorias).map(function(i) {
+                    if (categorias[i] === tipo) {
+                        Object.keys(produtos).map(function(k) {
+                            if (produtos[k]['categoria_id'] === i) {
+                                h += "<div class='produto'>";
+                                h += "<img src='" + produtos[k]['path_img'] + "' alt='" + produtos[k]['nome'] + "'>";
+                                h += "<hr class='linha'>";
+                                h += "<p class='legenda'>" + produtos[k]['nome'] + "</p>";
+                                h += "<p class='preco'>R$" + produtos[k]['custo_unitario'].split('.')[0] + "<span>" + (produtos[k]['custo_unitario'].split('.')[1] === undefined ? '00' : produtos[k]['custo_unitario'].split('.')[1]) + "</span></p>";
+                                h += "<button>Comprar</button></div>";
+                            }
+                        });
+                    }
+                });
+                div.innerHTML = h;
+            }
+
+            function search() {
+                let s = document.getElementById('form-pesquisar').value;
+                if (s !== "") {
+                    let div = document.getElementById('produtos-id');
+                    let h = "";
+                    Object.keys(produtos).map(function(k) {
+                        if (produtos[k]['nome'].toLowerCase().indexOf(s.toLowerCase()) !== -1) {
                             h += "<div class='produto'>";
-                            h += "<img src='"+produtos[k]['path_img']+"' alt='"+produtos[k]['nome']+"'>";
+                            h += "<img src='" + produtos[k]['path_img'] + "' alt='" + produtos[k]['nome'] + "'>";
                             h += "<hr class='linha'>";
-                            h += "<p class='legenda'>"+produtos[k]['nome']+"</p>";
-                            h += "<p class='preco'>R$"+produtos[k]['custo_unitario'].split('.')[0]+"<span>"+(produtos[k]['custo_unitario'].split('.')[1] === undefined ? '00' : produtos[k]['custo_unitario'].split('.')[1])+"</span></p>";
+                            h += "<p class='legenda'>" + produtos[k]['nome'] + "</p>";
+                            h += "<p class='preco'>R$" + produtos[k]['custo_unitario'].split('.')[0] + "<span>" + (produtos[k]['custo_unitario'].split('.')[1] === undefined ? '00' : produtos[k]['custo_unitario'].split('.')[1]) + "</span></p>";
                             h += "<button>Comprar</button></div>";
                         }
                     });
+                    document.getElementById('form-pesquisar').value = "";
+                    div.innerHTML = h !== "" ? h : "<h2>A pesquisa '" + s + "' não foi encontrado!</h2>";
                 }
-            });
-            div.innerHTML = h;
-        }
-        function search() {
-            let s = document.getElementById('form-pesquisar').value;
-            if (s !== "") {
-                let div = document.getElementById('produtos-id');
-                let h = "";
-                Object.keys(produtos).map(function (k){
-                    if (produtos[k]['nome'].toLowerCase().indexOf(s.toLowerCase()) !== -1) {
-                        h += "<div class='produto'>";
-                        h += "<img src='"+produtos[k]['path_img']+"' alt='"+produtos[k]['nome']+"'>";
-                        h += "<hr class='linha'>";
-                        h += "<p class='legenda'>"+produtos[k]['nome']+"</p>";
-                        h += "<p class='preco'>R$"+produtos[k]['custo_unitario'].split('.')[0]+"<span>"+(produtos[k]['custo_unitario'].split('.')[1] === undefined ? '00' : produtos[k]['custo_unitario'].split('.')[1])+"</span></p>";
-                        h += "<button>Comprar</button></div>";
-                    }
-                });
-                document.getElementById('form-pesquisar').value = "";
-                div.innerHTML = h !== "" ? h : "<h2>A pesquisa '"+s+"' não foi encontrado!</h2>";
             }
-        }
-    </script>
+        </script>
 
 </body>
 
