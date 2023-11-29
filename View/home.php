@@ -14,17 +14,19 @@
 
 <body onload="chooseTodos()">
     <script>
-        var produtos, categorias;
+        var produtos, categorias, user;
     </script>
     <?php
     include_once("../Controller/getAllProdutos.php");
     echo "<script>produtos = " . json_encode($produtos) . ", categorias = " . json_encode($categorias) . ";</script>";
     $existeId = false;
+    $tela = "";
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
+        if (isset($_GET['tela'])) {$tela = $_GET['tela'];}
         $existeId = true;
         include_once("../Controller/getAllClientes.php");
-        echo "<script>var user = '".$id."', nome = '" . $data['nome'] . "', sobrenome = '" . $data['sobrenome'] . "', cpf = '" . $data['cpf'] . "', email = '" . $data['email'] . "', telefone = '" . $data['telefone'] . "', cep = '" . $data['cep'] . "';</script>";
+        echo "<script>user = '".$id."';var nome = '" . $data['nome'] . "', sobrenome = '" . $data['sobrenome'] . "', cpf = '" . $data['cpf'] . "', email = '" . $data['email'] . "', telefone = '" . $data['telefone'] . "', cep = '" . $data['cep'] . "';</script>";
     }
     ?>
     <div class="container">
@@ -167,9 +169,17 @@
             <h3>Carrinho</h3>
             <div id="div-carrinho"></div>
         </div>
-        <div id="configuracoes">
+        <div id="configuracoes" class="div-conf">
             <h3>Configurações</h3>
-            <form id="form-cadastro-config" action="../Controller/cadastro.php" method="POST">
+            <form id="form-cadastro-config" action="../Controller/alterUser.php" method="POST">
+                <div class="box-input-config" id="conteiner-nome">
+                    <label for="emai">Alterar Nome:</label>
+                    <input type="text" name="nome" id="nome-config" class="entrada" placeholder="Alterar Nome:" />
+                </div>
+                <div class="box-input-config" id="conteiner-sobrenome">
+                    <label for="emai">Alterar Sobrenome:</label>
+                    <input type="text" name="sobrenome" id="sobrenome-config" class="entrada" placeholder="Alterar Sobrenome:" />
+                </div>
                 <div class="box-input-config" id="conteiner-cep">
                     <label for="cep">Alterar CEP: </label>
                     <input type="text" name="cep" id="cep-config" class="entrada" placeholder="Alterar CEP:" />
@@ -178,9 +188,43 @@
                     <label for="telefone">Alterar Telefone:</label>
                     <input type="number" name="telefone" id="telefone-config" class="entrada" placeholder="Alterar Telefone:" />
                 </div>
+                <div class="box-input-config" id="conteiner-email">
+                    <label for="emai">Alterar E-mail:</label>
+                    <input type="text" name="email" id="email-config" class="entrada" placeholder="Alterar E-mail:" />
+                </div>
+                <div class="box-input-config" id="conteiner-senha">
+                    <label for="senha">Alterar Senha:</label>
+                    <input type="password" name="senha" id="senha-config" class="entrada" placeholder="Alterar Senha:" />
+                </div>
+                <div style='display: none;'><input type="text" nome="id" value=<?php echo "$id"?>></div>
                 <input type="submit" value="Modificar" class="btn-submit-config" id="enviar" />
             </form>
+            <input type="submit" value="Deslogar" class="btn-submit-config" id="deslogar"/>
         </div>
+        <?php
+            if ($tela === "home") {
+        ?>
+            <script>
+                document.getElementById("home").style.display = "block";
+                document.getElementById("finalizacao-compras").style.display = "none";
+                document.getElementById("configuracoes").style.display = "none";
+                document.getElementById("div-produto").style.display = "none";
+            </script>
+        <?php } elseif ($tela === "carrinho") {?>
+            <script>
+                document.getElementById("home").style.display = "none";
+                document.getElementById("finalizacao-compras").style.display = "block";
+                document.getElementById("configuracoes").style.display = "none";
+                document.getElementById("div-produto").style.display = "none";
+            </script>
+        <?php } elseif ($tela === "conf") {?>
+            <script>
+                document.getElementById("home").style.display = "none";
+                document.getElementById("finalizacao-compras").style.display = "none";
+                document.getElementById("configuracoes").style.display = "block";
+                document.getElementById("div-produto").style.display = "none";
+            </script>
+        <?php }?>
 </body>
 
 </html>

@@ -7,6 +7,6 @@
         $id = $_POST['id'];
         $frete = $_POST['frete'];
         $quantidade = $_POST["quantidade"];
-        //$c->setCarrinho($id, $produtoId, $frete, $quantidade);
+        $c->setCarrinho($id, $produtoId, $frete, $quantidade);
     }
-    //header("Location: ../View/home.php?id=$id");
+    header("Location: ../View/home.php?id=$id&tela=carrinho");

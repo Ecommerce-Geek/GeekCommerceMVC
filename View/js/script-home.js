@@ -166,7 +166,9 @@ document.getElementById("icon-config").addEventListener("click", () => {
     document.getElementById("configuracoes").style.display = "block";
     document.getElementById("div-produto").style.display = "none";
 })
-
+document.getElementById("deslogar").addEventListener('click', function () {
+    window.location.href = "../View/home.php";
+});
 // renderiza tela home
 function chooseTodos() {
     let div = document.getElementById("produtos-id");

@@ -62,6 +62,7 @@ function btn_click(id) {
     h += "<p class='preco-produto' id='produto-venom'>R$ "+produtos[id]['custo_unitario']+"</p>";
     h += "<p class='descricao'>"+produtos[id]['descricao']+"</p>";
     h += "<button class='comprar' onclick='add_carrinho("+id+")'>COMPRAR</button>";
+    h += "<button class='comprar' onclick='irHome()'>VOLTAR</button>";
     h += "<div class='campo-quantidade'>";
     h += "<div class='campo-icone-produtos'>";
     h += "<div class='logo-mais'>";
@@ -90,16 +91,24 @@ function btn_click(id) {
 }
 
 function add_carrinho(id) {
-    
-    fetch("https://viacep.com.br/ws/"+cep+"/json/").then(r => r.json()).then(j => {
-        let frete, uf;
-        uf = j['uf'];
-        if (uf === "PA") {
-            frete = 10;
-        } else if (uf === "AM" || uf === "MT" || uf === "TO" || uf === "MA" || uf === "AP" || uf === "RO") {
-            frete = 30;
-        } else frete = 50;
-    
-        window.location.href = "../../Controller/setCarrinho.php?produto_id="+id+"&id="+user+"&quantidade="+quantidade+"&frete="+frete;
-    });
+    if (user !== undefined) {
+        fetch("https://viacep.com.br/ws/"+cep+"/json/").then(r => r.json()).then(j => {
+            let frete, uf;
+            uf = j['uf'];
+            if (uf === "PA") {
+                frete = 10;
+            } else if (uf === "AM" || uf === "MT" || uf === "TO" || uf === "MA" || uf === "AP" || uf === "RO") {
+                frete = 30;
+            } else frete = 50;
+        
+            window.location.href = "../../Controller/setCarrinho.php?produto_id="+id+"&id="+user+"&quantidade="+quantidade+"&frete="+frete;
+        });
+    } else alert("cadastre-se para adicionar ao carrinho");
+}
+
+function irHome() {
+    document.getElementById("div-produto").style.display = "none";
+    document.getElementById("finalizacao-compras").style.display = "none";
+    document.getElementById("configuracoes").style.display = "none";
+    document.getElementById("home").style.display = "block";
 }

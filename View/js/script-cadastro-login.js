@@ -1,15 +1,14 @@
-const enviarBtn = document.querySelector("#enviar");
-const cpfInput = document.querySelector("#cpf");
-const nomeInput = document.querySelector("#nome");
-const sobrenomeInput = document.querySelector("#sobrenome");
 const emailInput = document.querySelector("#email");
-const telefoneInput = document.querySelector("#telefone");
-const cepInput = document.querySelector("#cep");
 const senhaInput = document.querySelector("#senha");
-
+const cpfInput = document.querySelector("#cpf");
+const cepInput = document.querySelector("#cep");
+const telefoneInput = document.querySelector("#telefone");
+const sobrenomeInput = document.querySelector("#sobrenome");
+const nomeInput = document.querySelector("#nome");
+const enviarBtn = document.querySelector("#enviar");
 
 enviarBtn.addEventListener("click", async (event) => {
-    event.preventDefault()
+event.preventDefault()
     const cpfValidado = cpfInput.value.replace(/\D/g, '');
     const cepValidado = cepInput.value.replace(/\D/g, '');
 

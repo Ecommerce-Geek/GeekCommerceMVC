@@ -34,6 +34,7 @@ main {
 
 
 .titulo-produto {
+    text-align: center;
     font-size: 24px;
     color: #333;
 }
@@ -70,6 +71,7 @@ main {
     border: none;
     cursor: pointer;
     margin-top: 10px;
+    margin-right: 5px;
 }
 
 .comprar:hover {
