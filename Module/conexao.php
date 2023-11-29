@@ -2,7 +2,7 @@
 class Conexao{
     private $conexao;
     function __construct() {
-        $this->conexao = new mysqli("localhost", "root", "", "geek_commerce");
+        $this->conexao = new mysqli("localhost", "root", "", "geek_commerce", "3200");
         if ($this->conexao->connect_error) {
             die("Erro na conexão com o banco de dados: " . $this->conexao->connect_error);
         }
@@ -67,7 +67,7 @@ class Conexao{
         $result = $this->conexao->query($sql);
         $ret = [];
         while ($row = $result->fetch_assoc()) {
-            $ret[$row['id']] = ['nome' => $row['nome'], 'custo_unitario' => $row['custo_unitario'], 'estoque' => $row['estoque'], 'categoria_id' => $row['categoria_id'], 'path_img' => $row['path_img']];
+            $ret[$row['id']] = ['nome' => $row['nome'], 'custo_unitario' => $row['custo_unitario'], 'estoque' => $row['estoque'], 'categoria_id' => $row['categoria_id'], 'path_img' => $row['path_img'], 'descricao' => $row['descricao']];
         }
         return $ret;
     }
@@ -79,5 +79,18 @@ class Conexao{
             $ret[$row['id']] = $row['nome'];
         }
         return $ret;
+    }
+    // usado em setCarrinho.php
+    public function setCarrinho($id, $produtoId, $frete, $quantidade) {
+        $sql2 = "SELECT * FROM  produtos WHERE id=$produtoId";
+        $result2 = $this->conexao->query($sql2);
+        $data = [];
+        while ($row = $result2->feth_assoc()) {
+            $data['nome'] = $row['nome'];
+            $data['custo_unitario'] = $row['custo_unitario'];
+            $data['estoque'] = $row['estoque'];
+        }
+        $sql = "INSERT INTO cliente (cliente_id, nome, custo_unitario, frete, quantidade) VALUE ($id, '".$data['nome']."', ".$data['custo_unitario'].", $frete, $quantidade);";
+        $this->conexao->query($sql);
     }
 }

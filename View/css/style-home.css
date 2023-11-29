@@ -143,7 +143,6 @@ hr {
 
 .template-home {
     position: relative;
-    display: block;
 }
 
 
@@ -523,12 +522,4 @@ footer {
     position: relative;
     left: 45px;
     top: -21px;
-}
-
-#configuracoes{
-    display: none;
-}
-
-#finalizacao-compras {
-    visibility: hidden;
 }
