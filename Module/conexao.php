@@ -111,6 +111,10 @@ class Conexao{
         if ($email !== '') {
             $sql .= ($senha !== '') ? "email = '$email', " : "email = '$email' ";
         }
+        if ($senha !== '') {
+            $sql .= "senha = '$senha' ";
+        }
+
         $sql .= "WHERE id=$id;";
         $this->conexao->query($sql);
     }
