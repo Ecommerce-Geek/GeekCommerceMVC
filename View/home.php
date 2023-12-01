@@ -21,6 +21,7 @@
     echo "<script>produtos = " . json_encode($produtos) . ", categorias = " . json_encode($categorias) . ";</script>";
     $existeId = false;
     $tela = "";
+    $data = null;
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         if (isset($_GET['tela'])) {$tela = $_GET['tela'];}
@@ -174,29 +175,29 @@
             <form id="form-cadastro-config" action="../Controller/alterUser.php" method="POST">
                 <div class="box-input-config" id="conteiner-nome">
                     <label for="emai">Alterar Nome:</label>
-                    <input type="text" name="nome" id="nome-config" class="entrada" placeholder="Alterar Nome:" />
+                    <input type="text" name="nome" id="nome-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['nome'].'"' : ""?> />
                 </div>
                 <div class="box-input-config" id="conteiner-sobrenome">
                     <label for="emai">Alterar Sobrenome:</label>
-                    <input type="text" name="sobrenome" id="sobrenome-config" class="entrada" placeholder="Alterar Sobrenome:" />
+                    <input type="text" name="sobrenome" id="sobrenome-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['sobrenome'].'"' : ""?> />
                 </div>
                 <div class="box-input-config" id="conteiner-cep">
                     <label for="cep">Alterar CEP: </label>
-                    <input type="text" name="cep" id="cep-config" class="entrada" placeholder="Alterar CEP:" />
+                    <input type="text" name="cep" id="cep-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['cep'].'"' : ""?> />
                 </div>
                 <div class="box-input-config" id="conteiner-telefone">
                     <label for="telefone">Alterar Telefone:</label>
-                    <input type="number" name="telefone" id="telefone-config" class="entrada" placeholder="Alterar Telefone:" />
+                    <input type="number" name="telefone" id="telefone-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['telefone'].'"' : ""?> />
                 </div>
                 <div class="box-input-config" id="conteiner-email">
                     <label for="emai">Alterar E-mail:</label>
-                    <input type="text" name="email" id="email-config" class="entrada" placeholder="Alterar E-mail:" />
+                    <input type="text" name="email" id="email-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['email'].'"' : ""?> />
                 </div>
                 <div class="box-input-config" id="conteiner-senha">
                     <label for="senha">Alterar Senha:</label>
-                    <input type="password" name="senha" id="senha-config" class="entrada" placeholder="Alterar Senha:" />
+                    <input type="password" name="senha" id="senha-config" class="entrada" />
                 </div>
-                <div style='display: none;'><input type="text" nome="id" value=<?php echo "$id"?>></div>
+                <input style='display: none;' type="text" name="id" value=<?php echo "$id"?>>
                 <input type="submit" value="Modificar" class="btn-submit-config" id="enviar" />
             </form>
             <input type="submit" value="Deslogar" class="btn-submit-config" id="deslogar"/>

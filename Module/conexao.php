@@ -93,4 +93,25 @@ class Conexao{
         $sql = "INSERT INTO cliente (cliente_id, nome, custo_unitario, frete, quantidade) VALUE ($id, '".$data['nome']."', ".$data['custo_unitario'].", $frete, $quantidade);";
         $this->conexao->query($sql);
     }
+    // usado em alterUser.php
+    public function alterDataUser($id, $nome, $sobrenome, $cep, $telefone, $email, $senha) {
+        $sql = "UPDATE clientes SET ";
+        if ($nome !== '') {
+            $sql .= ($sobrenome !== '' || $cep !== '' || $telefone !== '' || $email !== '' || $senha !== '') ? "nome = '$nome', " : "nome = '$nome' ";
+        }
+        if ($sobrenome !== '') {
+            $sql .= ($cep !== '' || $telefone !== '' || $email !== '' || $senha !== '') ? "sobrenome = $sobrenome, " : "sobrenome = '$sobrenome' ";
+        }
+        if ($cep !== '') {
+            $sql .= ($telefone !== '' || $email !== '' || $senha !== '') ? "cep = '$cep', " : "cep = $cep ";
+        }
+        if ($telefone !== '') {
+            $sql .= ($email !== '' || $senha !== '') ? "telefone = '$telefone', " : "telefone = '$telefone' ";
+        }
+        if ($email !== '') {
+            $sql .= ($senha !== '') ? "email = '$email', " : "email = '$email' ";
+        }
+        $sql .= "WHERE id=$id;";
+        $this->conexao->query($sql);
+    }
 }
