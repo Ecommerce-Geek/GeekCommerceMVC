@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style-home.css">
     <link rel="stylesheet" href="css/style-config.css">
     <script src="js/script-home.js" defer></script>
-    <link rel="stylesheet" href="css/style-produtos.css"/>
+    <link rel="stylesheet" href="css/style-produtos.css" />
     <script defer src="js/script-produtos.js" defer></script>
 </head>
 
@@ -24,10 +24,12 @@
     $data = null;
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        if (isset($_GET['tela'])) {$tela = $_GET['tela'];}
+        if (isset($_GET['tela'])) {
+            $tela = $_GET['tela'];
+        }
         $existeId = true;
         include_once("../Controller/getAllClientes.php");
-        echo "<script>user = '".$id."';var nome = '" . $data['nome'] . "', sobrenome = '" . $data['sobrenome'] . "', cpf = '" . $data['cpf'] . "', email = '" . $data['email'] . "', telefone = '" . $data['telefone'] . "', cep = '" . $data['cep'] . "';</script>";
+        echo "<script>user = '" . $id . "';var nome = '" . $data['nome'] . "', sobrenome = '" . $data['sobrenome'] . "', cpf = '" . $data['cpf'] . "', email = '" . $data['email'] . "', telefone = '" . $data['telefone'] . "', cep = '" . $data['cep'] . "';</script>";
     }
     ?>
     <div class="container">
@@ -46,7 +48,7 @@
                 <input type="text" name="query" placeholder="O que você procura?" id="form-pesquisar" required>
                 <button type="submit" id="botao-pesquisar" onclick="search()">Pesquisar</button>
                 <div id="resultadosDiv">
-                    
+
                 </div>
             </div>
             <?php
@@ -93,30 +95,30 @@
             <div id="produtos-dinamicos">
 
                 <h2 id="titulo-importante">Edição Limitada: Produtos Incríveis</h2>
-                <div id="slide-imagem1">
+                <div class="carrinho" id="slide-imagem1">
                     <a href="produtoexemplo.html">
                         <img class="image" id="hollow" src="img/Hollow Knight.jpg" alt="Hollow Knight">
                     </a>
                 </div>
-                <div id="slide-imagem2">
+                <div class="carrinho" id="slide-imagem2">
                     <a href="produtoexemplo.html">
                         <img class="image" id="sonic" src="img/sonic-bear-banner.jpg" alt="jogo Sonic Bear">
                     </a>
                 </div>
-                <div id="slide-imagem3">
+                <div class="carrinho" id="slide-imagem3">
                     <a href="produtoexemplo.html">
                         <img class="image" id="supersmash" id="supersmash" src="img/supersmashbros-banner.jpg" alt="jogo Super Smash Bros">
                     </a>
                 </div>
-                <div class="campo-icone">
+                <div class="carrinho" class="campo-icone">
                     <img class="setinha" id="direita" src="img/simbulos-dinamicos/angulo-direito.png" alt="">
                 </div>
-                <div class="campo-icone">
+                <div class="carrinho" class="campo-icone">
                     <img class="setinha" id="esquerda" src="img/simbulos-dinamicos/angulo-esquerdo.png" alt="">
                 </div>
 
                 <div class="campo-icone">
-                    <div id="campo-bolinhas">
+                    <div class="carrinho" id="campo-bolinhas">
                         <div class="slide-bolinha1">
                             <img class="bolinha" id="bolinha-preta" src="img/simbulos-dinamicos/circulo-preto.png">
                         </div>
@@ -168,42 +170,59 @@
         <div id="div-produto"></div>
         <div id="finalizacao-compras">
             <h3>Carrinho</h3>
-            <div id="div-carrinho"></div>
+            <div id="div-carrinho">
+                <div class="area-carrinho">
+                    <img class="imagens-carrinho" src="img/produtosindividuais/Homem Aranha200.jpg" alt="ps5">
+                    <span class="produto-quantidade">1</span>
+                    <div class="organizar-vertical">
+                        <p class="produto-carrinho"><span class="nome-carrinho">Jogo Homem Aranha </span>R$<span class="preco-carrinho">150.00</span> x<span class="quantidade-carrinho"> 1</span></p>
+                        <p class="area-frete">Valor do frete: R$<span class="frete-carrinho">40.00</span></p>
+                        <div class="campo-icone" id="posicionamento-icone">
+                            <img src="img/simbulos-dinamicos/cruz.png" alt="tirar do carrinho">
+                        </div>
+                    </div>
+                </div>
+                <div class="finalizar-compra">
+                    <p class="total">Total: R$<span class="total-span">190.00</span></p>
+                    <button class="btn-finalizar">Finalizar Compra</button>
+                </div>
+            </div>
+
         </div>
         <div id="configuracoes" class="div-conf">
             <h3>Configurações</h3>
             <form id="form-cadastro-config" action="../Controller/alterUser.php" method="POST">
                 <div class="box-input-config" id="conteiner-nome">
                     <label for="emai">Alterar Nome:</label>
-                    <input type="text" name="nome" id="nome-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['nome'].'"' : ""?> />
+                    <input type="text" name="nome" id="nome-config" class="entrada" placeholder=<?php echo $data !== null ? '"' . $data['nome'] . '"' : "" ?> />
                 </div>
                 <div class="box-input-config" id="conteiner-sobrenome">
                     <label for="emai">Alterar Sobrenome:</label>
-                    <input type="text" name="sobrenome" id="sobrenome-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['sobrenome'].'"' : ""?> />
+                    <input type="text" name="sobrenome" id="sobrenome-config" class="entrada" placeholder=<?php echo $data !== null ? '"' . $data['sobrenome'] . '"' : "" ?> />
                 </div>
                 <div class="box-input-config" id="conteiner-cep">
                     <label for="cep">Alterar CEP: </label>
-                    <input type="text" name="cep" id="cep-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['cep'].'"' : ""?> />
+                    <input type="text" name="cep" id="cep-config" class="entrada" placeholder=<?php echo $data !== null ? '"' . $data['cep'] . '"' : "" ?> />
                 </div>
                 <div class="box-input-config" id="conteiner-telefone">
                     <label for="telefone">Alterar Telefone:</label>
-                    <input type="number" name="telefone" id="telefone-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['telefone'].'"' : ""?> />
+                    <input type="number" name="telefone" id="telefone-config" class="entrada" placeholder=<?php echo $data !== null ? '"' . $data['telefone'] . '"' : "" ?> />
                 </div>
                 <div class="box-input-config" id="conteiner-email">
                     <label for="emai">Alterar E-mail:</label>
-                    <input type="text" name="email" id="email-config" class="entrada" placeholder=<?php echo $data !== null ? '"'.$data['email'].'"' : ""?> />
+                    <input type="text" name="email" id="email-config" class="entrada" placeholder=<?php echo $data !== null ? '"' . $data['email'] . '"' : "" ?> />
                 </div>
                 <div class="box-input-config" id="conteiner-senha">
                     <label for="senha">Alterar Senha:</label>
                     <input type="password" name="senha" id="senha-config" class="entrada" />
                 </div>
-                <input style='display: none;' type="text" name="id" value=<?php echo "$id"?>>
+                <input style='display: none;' type="text" name="id" value=<?php echo "$id" ?>>
                 <input type="submit" value="Modificar" class="btn-submit-config" id="enviar" />
             </form>
-            <input type="submit" value="Deslogar" class="btn-submit-config" id="deslogar"/>
+            <input type="submit" value="Deslogar" class="btn-submit-config" id="deslogar" />
         </div>
         <?php
-            if ($tela === "home") {
+        if ($tela === "home") {
         ?>
             <script>
                 document.getElementById("home").style.display = "block";
@@ -211,21 +230,21 @@
                 document.getElementById("configuracoes").style.display = "none";
                 document.getElementById("div-produto").style.display = "none";
             </script>
-        <?php } elseif ($tela === "carrinho") {?>
+        <?php } elseif ($tela === "carrinho") { ?>
             <script>
                 document.getElementById("home").style.display = "none";
                 document.getElementById("finalizacao-compras").style.display = "block";
                 document.getElementById("configuracoes").style.display = "none";
                 document.getElementById("div-produto").style.display = "none";
             </script>
-        <?php } elseif ($tela === "conf") {?>
+        <?php } elseif ($tela === "conf") { ?>
             <script>
                 document.getElementById("home").style.display = "none";
                 document.getElementById("finalizacao-compras").style.display = "none";
                 document.getElementById("configuracoes").style.display = "block";
                 document.getElementById("div-produto").style.display = "none";
             </script>
-        <?php }?>
+        <?php } ?>
 </body>
 
 </html>
