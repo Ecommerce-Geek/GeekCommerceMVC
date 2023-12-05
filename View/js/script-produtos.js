@@ -47,7 +47,7 @@ function calcular(id) {
 
 const div_produto = document.getElementById("div-produto");
 
-div_produto.style.display = "none";
+//div_produto.style.display = "none";
 function btn_click(id) {
     quantidade = 1;
     let h = "";

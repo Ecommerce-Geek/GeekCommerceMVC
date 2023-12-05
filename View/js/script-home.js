@@ -142,7 +142,7 @@ btnSetinhaEsquerda.addEventListener("click", (event) => {
 
 //Area da Navegação
 
-document.getElementById("finalizacao-compras").style.display = "none";
+//document.getElementById("finalizacao-compras").style.display = "none";
 
 document.getElementById("carrinho").addEventListener("click", () => {
     document.getElementById("home").style.display = "none";
@@ -150,7 +150,7 @@ document.getElementById("carrinho").addEventListener("click", () => {
     document.getElementById("configuracoes").style.display = "none";
     document.getElementById("div-produto").style.display = "none";
 });
-document.getElementById("home").style.display = "block";
+//document.getElementById("home").style.display = "block";
 document.getElementById("icon-home").addEventListener("click", () => {
     document.getElementById("home").style.display = "block";
     document.getElementById("finalizacao-compras").style.display = "none";
@@ -159,7 +159,7 @@ document.getElementById("icon-home").addEventListener("click", () => {
 });
 
 //Area da configuração
-document.getElementById("configuracoes").style.display = "none"
+//document.getElementById("configuracoes").style.display = "none"
 document.getElementById("icon-config").addEventListener("click", () => {
     document.getElementById("home").style.display = "none";
     document.getElementById("finalizacao-compras").style.display = "none";
@@ -167,7 +167,7 @@ document.getElementById("icon-config").addEventListener("click", () => {
     document.getElementById("div-produto").style.display = "none";
 })
 document.getElementById("deslogar").addEventListener('click', function () {
-    window.location.href = "../View/home.php";
+    window.location.href = "../View/home.php?tela=home";
 });
 // renderiza tela home
 function chooseTodos() {

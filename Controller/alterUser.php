@@ -20,5 +20,5 @@
         
         $c->alterDataUser($id, $nome, $sobrenome, $cep, $telefone, $email, $senha);
 
-        header("Location: ../View/home.php?id=$id");
+        header("Location: ../View/home.php?id=$id&tela=home");
     }

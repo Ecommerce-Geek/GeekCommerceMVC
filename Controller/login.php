@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($id == 0) {
         header("Location: ../View/erro.php?e=1");
     } else {
-        header("Location: ../View/home.php?id=$id");
+        header("Location: ../View/home.php?id=$id&tela=home");
     }
 
 } else {

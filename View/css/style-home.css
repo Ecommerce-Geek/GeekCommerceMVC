@@ -532,8 +532,7 @@ footer {
 
 /* css do carrinho  */
 #div-carrinho {
-    width: 1026px;
-    height: 300px;
+    width: 1026px; 
     border: 2px solid #007BFF; 
     border-radius: 10px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
@@ -595,9 +594,8 @@ footer {
 }
 
 .finalizar-compra {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
+    /* flex-direction: column;  */
+    text-align: center;
     justify-content: center; 
     margin-top: 15px; 
 }

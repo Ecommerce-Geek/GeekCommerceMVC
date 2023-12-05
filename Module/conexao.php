@@ -2,7 +2,7 @@
 class Conexao{
     private $conexao;
     function __construct() {
-        $this->conexao = new mysqli("localhost", "root", "", "geek_commerce");
+        $this->conexao = new mysqli("localhost", "root", "", "geek_commerce", "3200");
         if ($this->conexao->connect_error) {
             die("Erro na conexão com o banco de dados: " . $this->conexao->connect_error);
         }
@@ -47,6 +47,16 @@ class Conexao{
         }
         return $id;
     }
+    // usado em getCarrinho.php
+    public function getCarrinho($id) {
+        $sql = "SELECT * FROM carrinho WHERE cliente_id=$id;";
+        $result = $this->conexao->query($sql);
+        $ret = [];
+        while ($row = $result->fetch_assoc()) {
+            array_push($ret, ['id' => $row['id'], 'nome' => $row['nome'], 'custo_unitario' => $row['custo_unitario'], 'frete' => $row['frete'], 'quantidade' => $row['quantidade'], 'path_img' => $row['path_img']]);
+        }
+        return $ret;
+    }
     // usado em getAllData.php
     public function getAllClientesById($id) {
         $sql = "SELECT * FROM clientes WHERE id = $id";
@@ -89,8 +99,14 @@ class Conexao{
             $data['nome'] = $row['nome'];
             $data['custo_unitario'] = $row['custo_unitario'];
             $data['estoque'] = $row['estoque'];
+            $data['path_img'] = $row['path_img'];
         }
-        $sql = "INSERT INTO cliente (cliente_id, nome, custo_unitario, frete, quantidade) VALUE ($id, '".$data['nome']."', ".$data['custo_unitario'].", $frete, $quantidade);";
+        $sql = "INSERT INTO carrinho (cliente_id, nome, custo_unitario, frete, quantidade, `path_img`) VALUE ($id, '".$data['nome']."', ".$data['custo_unitario'].", $frete, $quantidade, '".$data['path_img']."');";
+        $this->conexao->query($sql);
+    }
+    // usado em deletProdutoInCarrinho.php
+    public function deletProduto($id) {
+        $sql = "DELETE FROM carrinho WHERE id=$id";
         $this->conexao->query($sql);
     }
     // usado em alterUser.php

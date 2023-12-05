@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="css/style-config.css">
     <script src="js/script-home.js" defer></script>
     <link rel="stylesheet" href="css/style-produtos.css" />
-    <script defer src="js/script-produtos.js" defer></script>
+    <script defer src="js/script-produtos.js"></script>
 </head>
 
 <body onload="chooseTodos()">
     <script>
-        var produtos, categorias, user;
+        var produtos, categorias, user, meuCarrinho;
     </script>
     <?php
     include_once("../Controller/getAllProdutos.php");
@@ -30,6 +30,9 @@
         $existeId = true;
         include_once("../Controller/getAllClientes.php");
         echo "<script>user = '" . $id . "';var nome = '" . $data['nome'] . "', sobrenome = '" . $data['sobrenome'] . "', cpf = '" . $data['cpf'] . "', email = '" . $data['email'] . "', telefone = '" . $data['telefone'] . "', cep = '" . $data['cep'] . "';</script>";
+        
+        include_once("../Controller/getCarrinho.php");
+        echo "<script>meuCarrinho = ".json_encode($carrinho)."</script>";
     }
     ?>
     <div class="container">
@@ -58,7 +61,7 @@
                     <img src="img/simbulos-navegacao/casa.png" alt="home">
                 </div>
                 <div class="campo-icone" id="carrinho">
-                    <span id="numero-compras">0</span>
+                    <span id="numero-compras"><?php echo sizeof($carrinho)?></span>
                     <img src="img/simbulos-navegacao/carrinho-de-compras.png" alt="carrinho">
                 </div>
                 <div class="campo-icone" id="icon-config">
@@ -169,25 +172,8 @@
         </div>
         <div id="div-produto"></div>
         <div id="finalizacao-compras">
-            <h3>Carrinho</h3>
-            <div id="div-carrinho">
-                <div class="area-carrinho">
-                    <img class="imagens-carrinho" src="img/produtosindividuais/Homem Aranha200.jpg" alt="ps5">
-                    <span class="produto-quantidade">1</span>
-                    <div class="organizar-vertical">
-                        <p class="produto-carrinho"><span class="nome-carrinho">Jogo Homem Aranha </span>R$<span class="preco-carrinho">150.00</span> x<span class="quantidade-carrinho"> 1</span></p>
-                        <p class="area-frete">Valor do frete: R$<span class="frete-carrinho">40.00</span></p>
-                        <div class="campo-icone" id="posicionamento-icone">
-                            <img src="img/simbulos-dinamicos/cruz.png" alt="tirar do carrinho">
-                        </div>
-                    </div>
-                </div>
-                <div class="finalizar-compra">
-                    <p class="total">Total: R$<span class="total-span">190.00</span></p>
-                    <button class="btn-finalizar">Finalizar Compra</button>
-                </div>
-            </div>
-
+            <h3>Meu Carrinho</h3>
+            <div id="div-carrinho"></div>
         </div>
         <div id="configuracoes" class="div-conf">
             <h3>Configurações</h3>
@@ -221,6 +207,7 @@
             </form>
             <input type="submit" value="Deslogar" class="btn-submit-config" id="deslogar" />
         </div>
+        <script src="js/script-carrinho.js"></script>
         <?php
         if ($tela === "home") {
         ?>
@@ -236,6 +223,7 @@
                 document.getElementById("finalizacao-compras").style.display = "block";
                 document.getElementById("configuracoes").style.display = "none";
                 document.getElementById("div-produto").style.display = "none";
+                load_carrinho();
             </script>
         <?php } elseif ($tela === "conf") { ?>
             <script>
