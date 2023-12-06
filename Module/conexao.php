@@ -2,7 +2,7 @@
 class Conexao{
     private $conexao;
     function __construct() {
-        $this->conexao = new mysqli("localhost", "root", "", "geek_commerce", "3200");
+        $this->conexao = new mysqli("localhost", "root", "", "geek_commerce");
         if ($this->conexao->connect_error) {
             die("Erro na conexão com o banco de dados: " . $this->conexao->connect_error);
         }
