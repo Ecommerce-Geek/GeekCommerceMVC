@@ -116,10 +116,10 @@ class Conexao{
             $sql .= ($sobrenome !== '' || $cep !== '' || $telefone !== '' || $email !== '' || $senha !== '') ? "nome = '$nome', " : "nome = '$nome' ";
         }
         if ($sobrenome !== '') {
-            $sql .= ($cep !== '' || $telefone !== '' || $email !== '' || $senha !== '') ? "sobrenome = $sobrenome, " : "sobrenome = '$sobrenome' ";
+            $sql .= ($cep !== '' || $telefone !== '' || $email !== '' || $senha !== '') ? "sobrenome = '$sobrenome', " : "sobrenome = '$sobrenome' ";
         }
         if ($cep !== '') {
-            $sql .= ($telefone !== '' || $email !== '' || $senha !== '') ? "cep = '$cep', " : "cep = $cep ";
+            $sql .= ($telefone !== '' || $email !== '' || $senha !== '') ? "cep = '$cep', " : "cep = '$cep' ";
         }
         if ($telefone !== '') {
             $sql .= ($email !== '' || $senha !== '') ? "telefone = '$telefone', " : "telefone = '$telefone' ";

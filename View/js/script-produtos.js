@@ -36,8 +36,8 @@ function calcular(id) {
         painelQuantidade.textContent = quantidade;
 
         // Atualizar o painel de preço multiplicando a quantidade pelo preço por unidade
-        const precoTotal = quantidade * (precoPorUnidade+0.01);
-        painelPreco.textContent = `Preço Total: R$ ${precoTotal.toFixed(2)}`;
+        const precoTotal = frete !== '???' ? quantidade * precoPorUnidade + frete : quantidade * precoPorUnidade;
+        painelPreco.innerHTML = `Preço: R$ ${produtos[id]['custo_unitario']} x${quantidade}<br>Frete: R$ ${frete !== '???' ? frete.toFixed(2) : frete}<br>Total: R$ ${precoTotal.toFixed(2)}`;
 
     }
 
@@ -59,7 +59,7 @@ function btn_click(id) {
     h += "<main>";
     h += "<section>";
     h += "<h2 class='titulo-produto'>"+produtos[id]['nome']+"</h2>";
-    h += "<p class='preco-produto' id='produto-venom'>R$ "+produtos[id]['custo_unitario']+"</p>";
+    h += "<p class='preco-produto'>R$ "+produtos[id]['custo_unitario']+"</p>";
     h += "<p class='descricao'>"+produtos[id]['descricao']+"</p>";
     h += "<button class='comprar' onclick='add_carrinho("+id+")'>COMPRAR</button>";
     h += "<button class='comprar' onclick='irHome()'>VOLTAR</button>";
@@ -91,24 +91,11 @@ function btn_click(id) {
 }
 
 function add_carrinho(id) {
-    if (user !== undefined) {
-        fetch("https://viacep.com.br/ws/"+cep+"/json/").then(r => r.json()).then(j => {
-            let frete, uf;
-            uf = j['uf'];
-            if (uf === "PA") {
-                frete = 10;
-            } else if (uf === "AM" || uf === "MT" || uf === "TO" || uf === "MA" || uf === "AP" || uf === "RO") {
-                frete = 30;
-            } else frete = 50;
-        
-            window.location.href = "../../Controller/setCarrinho.php?produto_id="+id+"&id="+user+"&quantidade="+quantidade+"&frete="+frete;
-        });
-    } else alert("cadastre-se para adicionar ao carrinho");
+    if (user !== undefined) {window.location.href = "../Controller/setCarrinho.php?produto_id="+id+"&id="+user+"&quantidade="+quantidade+"&frete="+frete;}
+    else alert("cadastre-se para adicionar ao carrinho");
 }
 
 function irHome() {
-    document.getElementById("div-produto").style.display = "none";
-    document.getElementById("finalizacao-compras").style.display = "none";
-    document.getElementById("configuracoes").style.display = "none";
-    document.getElementById("home").style.display = "block";
+    if (user !== undefined) {document.location.href = "home.php?id="+user+"&tela=home"}
+    else document.location.href = "home.php?tela=home";
 }

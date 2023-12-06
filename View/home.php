@@ -35,6 +35,7 @@
         echo "<script>meuCarrinho = ".json_encode($carrinho)."</script>";
     }
     ?>
+    <script src="js/script-frete.js"></script>
     <div class="container">
         <nav>
             <div class="campo-icone">
@@ -135,7 +136,7 @@
                 </div>
                 <div class="sub-recursos">
                     <h2 id="sub-title">Venha Conferir os Nossos Produtos!</h2>
-                    <a id="ver-todos" href="produtosGeral.html">Ver Todos</a>
+                    <a id="ver-todos" href="#">Ver Todos</a>
                 </div>
             </div>
             <div class="parent-container">
